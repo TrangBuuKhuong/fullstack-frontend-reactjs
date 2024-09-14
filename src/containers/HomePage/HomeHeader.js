@@ -13,6 +13,7 @@ class HomeHeader extends Component {
     //boostrap
     render() {
         let language = this.props.lang;
+
         return (
             <div>
                 <React.Fragment>
@@ -117,6 +118,7 @@ const mapStateToProps = (state) => {
     return {
         isLoggedIn: state.user.isLoggedIn,
         lang: state.app.language,
+
 
     };
 };
