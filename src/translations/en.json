@@ -62,6 +62,10 @@
         "image":"Avatar",
         "save":"Save user",
         "edit": "Save changes"
+    },
+     "homepage":{
+        "out-standing-doctor":"Doctors outstanding last week",
+        "more-info":"More info"
     }
    
 }
