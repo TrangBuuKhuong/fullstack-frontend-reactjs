@@ -21,6 +21,7 @@ import HomePage from './HomePage/HomePage.js';
 import CustomScrollbars from '../components/CustomScrollbars.js';
 import { saveDetailDoctor } from '../store/actions/adminActions.js';
 import DetailDoctor from './Patient/Doctor/DetailDoctor.js';
+import Doctor from '../routes/Doctor.js';
 class App extends Component {
 
     handlePersistorState = () => {
@@ -42,17 +43,18 @@ class App extends Component {
     }
 
     render() {
+        console.log('check this.props.isLoggedIn: ', this.props.isLoggedIn)
         return (
             <Fragment>
                 <Router history={history}>
                     <div className="main-container">
-                        {this.props.isLoggedIn && <Header />}
                         <div className="content-container">
                             <CustomScrollbars style={{ height: '100vh', width: '100%' }}>
                                 <Switch>
                                     <Route path={path.HOME} exact component={(Home)} />
                                     <Route path={path.LOGIN} component={userIsNotAuthenticated(Login)} />
                                     <Route path={path.SYSTEM} component={userIsAuthenticated(System)} />
+                                    <Route path={"/doctor/"} component={userIsAuthenticated(Doctor)} />
                                     <Route path={path.HOMEPAGE} component={(HomePage)} />
                                     <Route path={"/detail-doctor/:id"} component={(DetailDoctor)} />
                                 </Switch>
