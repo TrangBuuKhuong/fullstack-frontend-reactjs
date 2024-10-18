@@ -92,7 +92,13 @@
             "select-doctor":"Select doctor",
             "intro":"Introduction",
              "add":"Create Infor",
-            "save":"Save Infor "
+            "save":"Save Infor ",
+            "price":"Price",
+            "payment":"Payment",
+            "province":"Province",
+            "nameclinic":"Name clinic",
+            "addressclinic":"Address clinic",
+            "note":"Note"
         }
     }
    
