@@ -43,7 +43,7 @@ class App extends Component {
     }
 
     render() {
-        console.log('check this.props.isLoggedIn: ', this.props.isLoggedIn)
+
         return (
             <Fragment>
                 <Router history={history}>

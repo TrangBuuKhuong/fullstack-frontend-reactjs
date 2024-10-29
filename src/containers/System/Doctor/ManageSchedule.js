@@ -129,14 +129,12 @@ class ManageSchedule extends Component {
             toast.error("err SaveBulkScheduleDoctor")
         }
 
-        console.log('check result: ', result);
-
     }
     render() {
         let { rangeTime } = this.state;
         let { language } = this.props;
         let yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
-        console.log("check rangetime:", rangeTime)
+
         return (
             <div className='manage-schedule-container'>
                 <div className='m-s-title'>

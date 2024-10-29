@@ -7,13 +7,16 @@ import localization from 'moment/locale/vi';
 import { LANGUAGES } from '../../../utils';
 import { getScheduleByDate } from '../../../services/userService';
 import { FormattedMessage } from 'react-intl';
+import BookingModal from './Modal/BookingModal';
 class DoctorSchedule extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
             allDays: [],
-            allAvailableTime: []
+            allAvailableTime: [],
+            isOpenModalbooking: false,
+            dataTime: {}
         }
 
 
@@ -99,55 +102,74 @@ class DoctorSchedule extends Component {
         }
 
     }
+    handleClickScheduleTime = (time) => {
+        this.setState({
+            isOpenModalbooking: true,
+            dataTime: time
+        })
+
+    }
+    closeBookingModal = () => {
+        this.setState({
+            isOpenModalbooking: false
+        })
+    }
     render() {
-        let { allDays, allAvailableTime } = this.state;
+        let { allDays, allAvailableTime, isOpenModalbooking, dataTime } = this.state;
         let { language } = this.props;
-        console.log("check alvailable:", allAvailableTime)
+
         return (
-            <div className='doctor-schedule-container'>
-                <div className='all-schedule'>
-                    <select onChange={(event) => this.handleOnchangeSelect(event)}>
-                        {allDays && allDays.length > 0 && allDays.map((item, index) => {
-                            return (
+            <>
+                <div className='doctor-schedule-container'>
+                    <div className='all-schedule'>
+                        <select onChange={(event) => this.handleOnchangeSelect(event)}>
+                            {allDays && allDays.length > 0 && allDays.map((item, index) => {
+                                return (
 
-                                <option value={item.value} key={index}>{item.label}</option>
-                            )
-                        })}
-                    </select>
-                </div>
-                <div className='all-available-time'>
-                    <div className='text-calendar'>
-                        <i className="fa fa-calendar" aria-hidden="true"><span><FormattedMessage id="patient.detail-doctor.schedule" /></span></i>
+                                    <option value={item.value} key={index}>{item.label}</option>
+                                )
+                            })}
+                        </select>
                     </div>
-                    <div className="time-content">
-                        {allAvailableTime && allAvailableTime.length > 0 ?
+                    <div className='all-available-time'>
+                        <div className='text-calendar'>
+                            <i className="fa fa-calendar" aria-hidden="true"><span><FormattedMessage id="patient.detail-doctor.schedule" /></span></i>
+                        </div>
+                        <div className="time-content">
+                            {allAvailableTime && allAvailableTime.length > 0 ?
 
-                            <>
-                                <div className='time-content-btns'>
-                                    {allAvailableTime.map((item, index) => {
-                                        let timeDisplay = language === LANGUAGES.VI ?
-                                            item.timeTypeData.valueVi : item.timeTypeData.valueEn
-                                        return (
-                                            <button key={index}
-                                                className={language === LANGUAGES.VI ? 'btb-vi' : ' btn-en'}
-                                            >{timeDisplay}</button>
-                                        )
+                                <>
+                                    <div className='time-content-btns'>
+                                        {allAvailableTime.map((item, index) => {
+                                            let timeDisplay = language === LANGUAGES.VI ?
+                                                item.timeTypeData.valueVi : item.timeTypeData.valueEn
+                                            return (
+                                                <button key={index} onClick={() => this.handleClickScheduleTime(item)}
+                                                    className={language === LANGUAGES.VI ? 'btb-vi' : ' btn-en'}
+                                                >{timeDisplay}</button>
+                                            )
 
-                                    })}
-                                </div>
+                                        })}
+                                    </div>
 
 
-                                <div className='book-free'>
-                                    <span><FormattedMessage id="patient.detail-doctor.choose" /> <i className='far fa-hand-point-up'></i> <FormattedMessage id="patient.detail-doctor.book-free" /></span>
-                                </div>
-                            </>
+                                    <div className='book-free'>
+                                        <span><FormattedMessage id="patient.detail-doctor.choose" /> <i className='far fa-hand-point-up'></i> <FormattedMessage id="patient.detail-doctor.book-free" /></span>
+                                    </div>
+                                </>
 
-                            :
-                            <div className='no-schedule'><FormattedMessage id="patient.detail-doctor.no-schedule" /></div>
-                        }
+                                :
+                                <div className='no-schedule'><FormattedMessage id="patient.detail-doctor.no-schedule" /></div>
+                            }
+                        </div>
                     </div>
                 </div>
-            </div>
+                <BookingModal isOpenModal={isOpenModalbooking}
+                    closeBookingModal={this.closeBookingModal}
+                    dataTime={dataTime}
+                />
+            </>
+
         );
     }
 }

@@ -84,6 +84,13 @@
             "no-schedule":"No schedule in this time. Plz choose another time",
             "choose":"Choose",
             "book-free":"and book free"
+        },
+         "extra-infor-doctor":{
+            "address":"Medical examination address",
+            "price":"Medical examination fee",
+            "detail":"Detail",
+            "payment":"Payment method",
+            "hide-price":"Hide"
         }
     },
     "admin":{

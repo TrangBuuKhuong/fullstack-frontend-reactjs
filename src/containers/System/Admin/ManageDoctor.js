@@ -142,23 +142,56 @@ class ManageDoctor extends Component {
 
     handleChangeSelect = async (selectedDoctor) => {
         this.setState({ selectedDoctor });
+        let { listPayment, listPrice, listProvince } = this.state;
         let res = await getDetailInforDoctor(selectedDoctor.value);
         if (res && res.errCode === 0 && res.data && res.data.Markdown) {
             let markdown = res.data.Markdown;
+            let priceId = '', provinceId = '', paymentId = '', addressClinic = '', nameClinic = '', note = '',
+                selectedPrice = '', selectedProvince = '', selectedPayment = '';
+
+            if (res.data.Doctor_Infor) {
+                priceId = res.data.Doctor_Infor.priceId;
+                provinceId = res.data.Doctor_Infor.provinceId;
+                paymentId = res.data.Doctor_Infor.paymentId;
+                addressClinic = res.data.Doctor_Infor.addressClinic;
+                nameClinic = res.data.Doctor_Infor.nameClinic;
+                note = res.data.Doctor_Infor.note;
+                selectedPrice = listPrice.find(item => {
+                    return item && item.value === priceId
+                })
+                selectedProvince = listProvince.find(item => {
+                    return item && item.value === provinceId
+                })
+                selectedPayment = listPayment.find(item => {
+                    return item && item.value === paymentId
+                })
+
+
+            }
             this.setState({
                 contentHTML: markdown.contentHTML,
                 contentMarkdown: markdown.contentMarkdown,
                 description: markdown.description,
-                hasOldData: true
+                hasOldData: true,
+                addressClinic: addressClinic,
+                nameClinic: nameClinic,
+                note: note,
+                selectedPrice: selectedPrice,
+                selectedProvince: selectedProvince,
+                selectedPayment: selectedPayment,
 
             })
+
         }
         else {
             this.setState({
                 contentHTML: '',
                 contentMarkdown: '',
                 description: '',
-                hasOldData: false
+                hasOldData: false,
+                addressClinic: '',
+                nameClinic: '',
+                note: ''
 
             })
         }

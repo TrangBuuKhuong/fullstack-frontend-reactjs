@@ -6,6 +6,7 @@ import { getDetailInforDoctor } from '../../../services/userService';
 import { LANGUAGES } from '../../../utils';
 import { withRouter } from 'react-router';
 import DoctorSchedule from './DoctorSchedule';
+import DoctorExtraInfor from './DoctorExtraInfor';
 class DetailDoctor extends Component {
 
     constructor(props) {
@@ -31,7 +32,7 @@ class DetailDoctor extends Component {
                 })
 
             }
-            console.log('check res: ', res)
+
         }
     }
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -39,6 +40,7 @@ class DetailDoctor extends Component {
     }
 
     render() {
+
         let { detailDoctor } = this.state;
         let { language } = this.props;
         let nameEn, nameVi = '';
@@ -46,7 +48,7 @@ class DetailDoctor extends Component {
             nameVi = `${detailDoctor.positionData.valueVi}, ${detailDoctor.lastName} ${detailDoctor.firstName}`;
             nameEn = `${detailDoctor.positionData.valueEn}, ${detailDoctor.firstName} ${detailDoctor.lastName}`;
         }
-        console.log('check: ', detailDoctor)
+
         return (
             <>
 
@@ -75,7 +77,9 @@ class DetailDoctor extends Component {
                                 doctorIdFromParent={this.state.currentDoctorId}
                             />
                         </div>
-                        <div className='content-right'></div>
+                        <div className='content-right'>
+                            <DoctorExtraInfor doctorIdFromParent={this.state.currentDoctorId} />
+                        </div>
                     </div>
                     <div className='detail-infor-doctor'>
                         {detailDoctor && detailDoctor.Markdown && detailDoctor.Markdown.contentHTML
