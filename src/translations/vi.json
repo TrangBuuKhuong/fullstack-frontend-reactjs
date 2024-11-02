@@ -91,6 +91,20 @@
             "detail":"Xem chi tiết",
             "payment":"Phương thức thanh toán",
             "hide-price":"Ẩn bảng giá"
+        },
+        "booking-modal":{
+            "title":"Thông tin đặt lịch khám bệnh",
+            "full-name":"Họ và tên",
+            "phone-number":"Số điện thoại",
+            "email":"Địa chỉ email",
+            "address":"Địa chỉ",
+            "reason":"Lý do khám",
+            "birthday":"Ngày sinh",
+            "gender":"Giới tính",
+            "btn-confirm":"Xác nhận",
+            "btn-close":"Thoát",
+            "price":"Giá khám",
+            "free-booking":"Đặt lịch miễn phí"
         }
     },
     "admin":{

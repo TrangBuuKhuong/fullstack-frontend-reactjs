@@ -91,6 +91,20 @@
             "detail":"Detail",
             "payment":"Payment method",
             "hide-price":"Hide"
+        },
+         "booking-modal":{
+            "title":"Information for booking appointment",
+            "full-name":"Full name",
+            "phone-number":"Phone number",
+            "email":"Email",
+            "address":"Address",
+            "reason":"Reason",
+            "birthday":"Birthday",
+            "gender":"Gender",
+            "btn-confirm":"Confirm",
+            "btn-close":"Cancel",
+            "price":"Price",
+            "free-booking":"Free booking"
         }
     },
     "admin":{
